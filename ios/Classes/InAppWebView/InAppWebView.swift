@@ -2414,7 +2414,13 @@ public class InAppWebView: WKWebView, UIScrollViewDelegate, WKUIDelegate,
         )
 
         InAppWebView.windowWebViews[windowId] = webViewTransport
-        windowWebView.stopLoading()
+        
+        let isPopup = navigationAction.targetFrame == nil
+        if isPopup {
+            windowWebView.load(navigationAction.request)
+        } else {
+            windowWebView.stopLoading()
+        }
         
         let createWindowAction = CreateWindowAction(navigationAction: navigationAction, windowId: windowId, windowFeatures: windowFeatures, isDialog: nil)
         
