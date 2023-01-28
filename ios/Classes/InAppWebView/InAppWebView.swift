@@ -2408,19 +2408,19 @@ public class InAppWebView: WKWebView, UIScrollViewDelegate, WKUIDelegate,
         let windowWebView = InAppWebView(id: nil, registrar: nil, frame: CGRect.zero, configuration: configuration, contextMenu: nil)
         windowWebView.windowId = windowId
         
-        let webViewTransport = WebViewTransport(
-            webView: windowWebView,
-            request: navigationAction.request
-        )
-
-        InAppWebView.windowWebViews[windowId] = webViewTransport
-        
         let isPopup = navigationAction.targetFrame == nil
         if isPopup {
             windowWebView.load(navigationAction.request)
         } else {
             windowWebView.stopLoading()
         }
+        
+        let webViewTransport = WebViewTransport(
+            webView: windowWebView,
+            request: navigationAction.request
+        )
+
+        InAppWebView.windowWebViews[windowId] = webViewTransport
         
         let createWindowAction = CreateWindowAction(navigationAction: navigationAction, windowId: windowId, windowFeatures: windowFeatures, isDialog: nil)
         
