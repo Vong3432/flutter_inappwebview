@@ -40,6 +40,7 @@ public class SafariViewController: SFSafariViewController, SFSafariViewControlle
         self.delegate = self
     }
     
+    @available(iOS 11.0, *)
     public static func prepareConfig(configuration: SFSafariViewController.Configuration, safariSettings: SafariBrowserSettings) {
         configuration.entersReaderIfAvailable = safariSettings.entersReaderIfAvailable
         configuration.barCollapsingEnabled = safariSettings.barCollapsingEnabled
